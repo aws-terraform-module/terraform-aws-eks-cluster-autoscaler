@@ -1,8 +1,10 @@
-# terraform-aws-eks-cluster-autoscaler
+## terraform-aws-eks-cluster-autoscaler
+
+We have published the module at: [https://registry.terraform.io/modules/aws-terraform-module/eks-cluster-autoscaler/aws/latest](https://registry.terraform.io/modules/aws-terraform-module/eks-cluster-autoscaler/aws/latest)
 
 ## If you had used "EKS module" to provision your EKS cluster, you could refer to the below configuration.
 
-```hcl
+```plaintext
 
 variable "aws_region" {
   description = "Please enter the region used to deploy this infrastructure"
@@ -20,7 +22,7 @@ data "terraform_remote_state" "eks" {
 }
 
 module "eks-cluster-autoscaler" {
-  source  = "mrnim94/eks-cluster-autoscaler/aws"
+  source  = "aws-terraform-module/eks-cluster-autoscaler/aws"
   version = "1.0.2"
 
   aws_region = var.aws_region
@@ -32,12 +34,11 @@ module "eks-cluster-autoscaler" {
   eks_cluster_id = data.terraform_remote_state.eks.outputs.cluster_id
   aws_iam_openid_connect_provider_arn = data.terraform_remote_state.eks.outputs.oidc_provider_arn
 }
-
 ```
 
 ## In other case. YOu can use this configuration
 
-```hcl
+```plaintext
 
 variable "aws_region" {
   description = "Please enter the region used to deploy this infrastructure"
@@ -57,7 +58,7 @@ data "aws_eks_cluster" "eks_k8s" {
 }
 
 module "eks-cluster-autoscaler" {
-  source  = "mrnim94/eks-cluster-autoscaler/aws"
+  source  = "aws-terraform-module/eks-cluster-autoscaler/aws"
   version = "1.0.2"
 
   aws_region = var.aws_region
@@ -73,7 +74,7 @@ module "eks-cluster-autoscaler" {
 
 ## Recheck
 
-```
+```plaintext
 root@LP11-D7891:~# kubectl get all -n kube-system
 NAME                                                               READY   STATUS    RESTARTS   AGE
 pod/aws-node-8jd96                                                 1/1     Running   0          40m
@@ -101,4 +102,4 @@ replicaset.apps/nimtechnology-dev-ca-aws-cluster-autoscaler-5d45898bc5   1      
 
 You also refer to My Post regarding Cluster AutoScaler on EKS.
 
-[![Image](https://nimtechnology.com/wp-content/uploads/2022/09/image-345-1536x816.png "[AWS] Discovering how to design Cluster Autoscaler on EKS. ")](https://nimtechnology.com/2022/09/29/aws-discovering-how-to-design-cluster-autoscaler-on-eks/)
+[![Image](https://nimtechnology.com/wp-content/uploads/2022/09/image-345-1536x816.png)](https://nimtechnology.com/2022/09/29/aws-discovering-how-to-design-cluster-autoscaler-on-eks/)
