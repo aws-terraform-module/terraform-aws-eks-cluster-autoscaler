@@ -31,7 +31,7 @@ module "eks-cluster-autoscaler" {
 
   eks_cluster_certificate_authority_data = data.terraform_remote_state.eks.outputs.cluster_certificate_authority_data
   eks_cluster_endpoint = data.terraform_remote_state.eks.outputs.cluster_endpoint
-  eks_cluster_id = data.terraform_remote_state.eks.outputs.cluster_id
+  eks_cluster_name = data.terraform_remote_state.eks.outputs.cluster_name
   aws_iam_openid_connect_provider_arn = data.terraform_remote_state.eks.outputs.oidc_provider_arn
 }
 ```
@@ -67,7 +67,7 @@ module "eks-cluster-autoscaler" {
 
   eks_cluster_certificate_authority_data = data.aws_eks_cluster.eks_k8s.certificate_authority[0].data
   eks_cluster_endpoint = data.aws_eks_cluster.eks_k8s.endpoint
-  eks_cluster_id = var.cluster_id
+  eks_cluster_name = var.cluster_name
   aws_iam_openid_connect_provider_arn = "arn:aws:iam::${element(split(":", "${data.aws_eks_cluster.eks_k8s.arn}"), 4)}:oidc-provider/${element(split("//", "${data.aws_eks_cluster.eks_k8s.identity[0].oidc[0].issuer}"), 1)}"
 }
 ```

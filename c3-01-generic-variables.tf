@@ -18,8 +18,8 @@ variable "business_divsion" {
   default = "SAP"
 }
 
-variable "eks_cluster_id" {
-  description = "Full EKS cluster name -- ID/data.terraform_remote_state.eks.outputs.cluster_id"
+variable "eks_cluster_name" {
+  description = "Full EKS cluster name/data.terraform_remote_state.eks.outputs.cluster_id"
   type = string
   default = ""
 }

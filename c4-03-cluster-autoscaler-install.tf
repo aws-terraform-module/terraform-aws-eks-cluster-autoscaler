@@ -17,7 +17,7 @@ resource "helm_release" "cluster_autoscaler_release" {
 
   set {
     name  = "autoDiscovery.clusterName"
-    value = var.eks_cluster_id
+    value = var.eks_cluster_name
   }
 
   set {
